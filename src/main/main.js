@@ -22,6 +22,7 @@ function createMainWindow() {
             nodeIntegration: true
         }
     })
+    // 将打开的窗口放入openWindows中维护
     openWindows.push(win);
     // 如果是测试环境则监听本地8001端口，否则加载index.html文件
     console.log('asdasdadad', process.env.NODE_ENV )
@@ -42,3 +43,21 @@ function createMainWindow() {
     // 打开开发者工具
 }
 app.on('ready', createMainWindow)
+electron.ipcMain.on('openNewBrower', (route) => {
+    console.log('打开的新窗口关联的页面',);
+    window.localStorage.setItem('currentRoute',  "newBrower.html")
+    let win = new BrowserWindow({
+        width: 200,
+        height: 400,
+        webPreferences: {
+            nodeIntegration: true
+        }
+    });
+    if (isDev()) {
+        const ss = win.loadURL('http://localhost:8001/newBrower.html');
+        console.log('ss', ss)
+        win.webContents.openDevTools()
+    } else {
+        // win.loadFile('./dist/renderer/index.html');
+    }    
+});

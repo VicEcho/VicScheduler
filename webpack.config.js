@@ -4,6 +4,7 @@
  */
 
 module.exports = {
+  target: 'electron-renderer',
   resolve: {
     alias: {
       '@': require('path').resolve(__dirname, 'src'),

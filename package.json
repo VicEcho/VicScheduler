@@ -1,5 +1,5 @@
 {
-  "name": "vic-app",
+  "name": "vicSechduler",
   "private": true,
   "main": "./dist/main.js",
   "version": "0.0.1",
