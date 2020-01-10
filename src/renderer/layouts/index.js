@@ -3,6 +3,7 @@ import React from 'react';
 import { Button, Col, Row, Layout, Icon } from 'antd';
 import router from 'umi/router';
 const { Header, Footer, Sider, Content } = Layout;
+const electron = require("electron");
 
 export default class BasicLayout extends React.Component {
   constructor(props) {
@@ -17,12 +18,13 @@ export default class BasicLayout extends React.Component {
   }
 
   render() {
-    console.log('this.props.pathName', this.props.location)
+    console.log('this.props.pathName', this.props.location, this.props.location.pathname === electron.remote.getGlobal("currentRoute"))
+    console.log('22222222222', electron.remote.getGlobal("currentRoute"));
     const { collapsed } = this.state;
     return (
       <div className={styles.normal} >
         {
-          this.props.pathname === localStorage.getItem("currentRoute") ?
+          this.props.location.pathname === electron.remote.getGlobal("currentRoute") ?
           <div>{this.props.children}</div> :
           <Layout>
           <Sider style={{ backgroundColor: '#87CEFA' }} trigger={null} collapsible collapsed={this.state.collapsed}>

@@ -15,7 +15,7 @@ export default {
       routes: [
         { path: '/', component: '../pages/index' },
         { path: '/test', component: '../pages/vic/Test' },
-        { path: '/newBrower', component: '../pages/NewBrower' }
+        { path: '/newBrower', component: '../pages/NewBrower', title: 'vicTest' }
       ]
     }
   ],
