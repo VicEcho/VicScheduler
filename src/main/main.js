@@ -51,7 +51,7 @@ electron.ipcMain.on('openNewBrower', (route) => {
         const ss = win.loadURL('http://localhost:8001/newBrower.html');
         win.webContents.openDevTools()
     } else {
-        // win.loadFile('./dist/renderer/index.html');
+        win.loadFile('./dist/renderer/newBrower.html');
     }
     win.on('closed', () => {
         // 取消引用 window 对象，删除map里维护的窗口，

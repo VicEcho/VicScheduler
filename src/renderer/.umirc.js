@@ -1,5 +1,7 @@
 
 // ref: https://umijs.org/config/
+var nodeExternals = require('webpack-node-externals');
+
 const path = __dirname;
 export default {
   publicPath: './',
@@ -26,7 +28,7 @@ export default {
       dva: true,
       title: 'vicAppZero',
       dll: true,
-       
+
       routes: {
         exclude: [
           /models\//,
@@ -38,9 +40,17 @@ export default {
       },
     }],
   ],
+  externals(context, request, callback) {
+    let IGNORES = ['realm', 'sqlite3', '@journeyapps/sqlcipher'];
+    if (IGNORES.indexOf(request) >= 0) {
+      return callback(null, "require('" + request + "')");
+    }
+    callback();
+  },
   chainWebpack(config, { webpack }) {
     console.log('config=======', config.target)
     // 设置 alias
     config.target('electron-renderer');
+    extraBabelPresets: []
   }
 }

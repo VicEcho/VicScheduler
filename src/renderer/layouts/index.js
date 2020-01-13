@@ -1,6 +1,7 @@
 import styles from './index.css';
 import React from 'react';
 import { Button, Col, Row, Layout, Icon } from 'antd';
+import initRealm from  '../realm'
 import router from 'umi/router';
 const { Header, Footer, Sider, Content } = Layout;
 const electron = require("electron");
@@ -14,7 +15,7 @@ export default class BasicLayout extends React.Component {
   }
 
   componentDidMount() {
-     
+    global.realm = initRealm;
   }
 
   render() {
@@ -29,7 +30,7 @@ export default class BasicLayout extends React.Component {
           <Layout>
           <Sider style={{ backgroundColor: '#87CEFA' }} trigger={null} collapsible collapsed={this.state.collapsed}>
             <Row style={{width: '100%', height: '60px', marginTop: "20px"}}>
-              <Icon style={{fontSize: '40px', color: '#FFFFFF', cursor: 'pointer'}} type="schedule" />
+              <Icon onClick={() => router.push('/test.html')} style={{fontSize: '40px', color: '#FFFFFF', cursor: 'pointer'}} type="schedule" />
             </Row>
             <Row  style={{width: '100%', height: '60px', marginTop: "20px"}}>
               <Icon style={{fontSize: '40px', color: '#FFFFFF', cursor: 'pointer'}} type="notification" />

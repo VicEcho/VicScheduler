@@ -1,5 +1,5 @@
-const Realm = require('realm');
-
+// const Realm = require('realm');
+import Realm from 'realm'
 const Theme = {
     name: 'Theme',
     primaryKey: 'id',

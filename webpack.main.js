@@ -1,6 +1,7 @@
 const path = require('path');
+var nodeExternals = require('webpack-node-externals');
 
-module.exports  = (env, argv) => {
+module.exports = (env, argv) => {
     console.log('argv', argv, 'env', env)
     const isDevelopment = argv.mode === 'development';
     return {
@@ -35,6 +36,7 @@ module.exports  = (env, argv) => {
             ]
         },
         target: 'electron-main',
-        watch: isDevelopment
+        watch: isDevelopment,
+
     }
 };
