@@ -3,6 +3,7 @@ import React from 'react';
 import { Button, Col, Row, Layout, Icon } from 'antd';
 import initRealm from  '../realm'
 import router from 'umi/router';
+import webSocket from '../socket';
 const { Header, Footer, Sider, Content } = Layout;
 const electron = require("electron");
 
@@ -15,7 +16,14 @@ export default class BasicLayout extends React.Component {
   }
 
   componentDidMount() {
+    // 初始化realm数据库并赋给全局变量
     global.realm = initRealm;
+    // 讲webSocket放入全局服务
+    global.webSocket = webSocket;
+    // 建立socket连接
+    webSocket.connect();
+    // 启动socket的监听
+    webSocket.linstener();
   }
 
   render() {
@@ -40,7 +48,7 @@ export default class BasicLayout extends React.Component {
             </Row>
           </Sider>
           <Layout>
-            <Button onClick={() => this.setState({ collapsed: !collapsed })}>ss</Button>
+            <Button onClick={() => this.setState({ collapsed: !collapsed })}>SS</Button>
             <Content>{this.props.children}</Content>
           </Layout>
         </Layout>
