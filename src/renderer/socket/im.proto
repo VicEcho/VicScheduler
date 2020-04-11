@@ -1,0 +1,7 @@
+syntax = "proto3";
+package IM;
+
+message ImMessage {
+    string name = 1;
+    string words = 2;
+}

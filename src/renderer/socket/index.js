@@ -18,6 +18,10 @@ function webSocket() {
         console.log('sendMessage', data)
         this.socket.emit("MessageEvent", data)
     }
+    this.sendPacket = (data) => {
+        console.log('PacketEvent', data)
+        this.socket.emit("PacketEvent", data)
+    }
 }
 
 
